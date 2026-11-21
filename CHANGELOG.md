@@ -8,6 +8,11 @@ Entry format: date, what changed, which files, and anything worth knowing (limit
 
 ## 2026-11-21
 
+### GitHub Pages site and redirect page
+- Turned on GitHub Pages for the repository (source: branch `main`, folder `/`). The app is at https://yestertommorrow-a11y.github.io/todo20261121/ and the phone mockup at https://yestertommorrow-a11y.github.io/todo20261121/todo-app/mockup.html.
+- Added a root `index.html` that redirects to `todo-app/`, so the short address works.
+- The site is public. Each visitor's items stay in their own browser.
+
 ### Published to GitHub
 - `C:\Users\yeste\ccc` is now a git repository on branch `main`, pushed to https://github.com/yestertommorrow-a11y/todo20261121 (a public repository). The first commit contains `todo-app/` and `CHANGELOG.md`.
 - Added `.gitignore` (ignores `.claude/`). `CLAUDE.md` is not in the repo because it currently sits in the kopi-loyalty folder.
