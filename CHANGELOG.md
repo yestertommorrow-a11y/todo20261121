@@ -8,6 +8,11 @@ Entry format: date, what changed, which files, and anything worth knowing (limit
 
 ## 2026-11-21
 
+### Heading color: red to green
+- The heading is now green (`--heading`: `#2e7d32` in light mode, a lighter `#4cc26a` in dark mode). The CSS variable was renamed from `--brick` to `--heading`.
+- Files: `todo-app/index.html`.
+- Not committed or pushed to GitHub yet, so the live site still shows red.
+
 ### GitHub Pages site and redirect page
 - Turned on GitHub Pages for the repository (source: branch `main`, folder `/`). The app is at https://yestertommorrow-a11y.github.io/todo20261121/ and the phone mockup at https://yestertommorrow-a11y.github.io/todo20261121/todo-app/mockup.html.
 - Added a root `index.html` that redirects to `todo-app/`, so the short address works.
