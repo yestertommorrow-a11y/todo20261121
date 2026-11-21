@@ -8,6 +8,12 @@ Entry format: date, what changed, which files, and anything worth knowing (limit
 
 ## 2026-11-21
 
+### Published to GitHub
+- `C:\Users\yeste\ccc` is now a git repository on branch `main`, pushed to https://github.com/yestertommorrow-a11y/todo20261121 (a public repository). The first commit contains `todo-app/` and `CHANGELOG.md`.
+- Added `.gitignore` (ignores `.claude/`). `CLAUDE.md` is not in the repo because it currently sits in the kopi-loyalty folder.
+- Commits in this repo use the name `yestertommorrow-a11y` and GitHub's no-reply email, set locally for this repo only.
+- Later changes are not pushed automatically.
+
 ### Compact add form
 - The add form is smaller so the list starts higher: 38px fields (42px on phones), 14px text on desktop (16px on phones to stop zoom on focus), tighter spacing and padding.
 - Layout: line 1 is the item box plus the Add button; line 2 holds priority, deadline, requested by, category, repeat and notes. Desktop fits in 2 lines at about 760px wide or more; narrower windows wrap notes onto a third line. Phones show 4 short rows (two fields per row) instead of about 9.
