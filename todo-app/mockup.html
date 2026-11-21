@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>To-Do Tracker – Galaxy S25 FE mockup</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; overflow: hidden; }
+    body {
+      background: radial-gradient(circle at 30% 20%, #2b2f4a, #0d0f1a 70%);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      display: grid;
+      place-items: center;
+    }
+    .caption {
+      position: fixed; left: 0; right: 0; bottom: 10px;
+      text-align: center; color: #8d93ad; font-size: 12px;
+    }
+    /* Phone body: 384 x 832 screen (19.5:9, like the S25 FE) + bezels */
+    .scaler {
+      position: absolute; top: 50%; left: 50%;
+      width: 404px; height: 852px;
+      margin: -426px 0 0 -202px; /* centre it; the scale is applied from the middle */
+      transform-origin: center;
+    }
+    .phone {
+      position: relative;
+      width: 404px; height: 852px;
+      padding: 10px;
+      border-radius: 52px;
+      background: linear-gradient(145deg, #3a3d4a, #14151c);
+      box-shadow: 0 0 0 2px #50546a inset, 0 30px 80px rgba(0, 0, 0, 0.6);
+    }
+    .btn { position: absolute; right: -4px; width: 4px; border-radius: 2px; background: #2c2e3a; }
+    .btn.power { top: 190px; height: 70px; }
+    .btn.vol { top: 290px; height: 110px; }
+    .screen {
+      position: relative;
+      width: 384px; height: 832px;
+      border-radius: 42px;
+      overflow: hidden;
+      background: var(--chrome, #f4f5fb);
+      color: var(--chrome-text, #1f2430);
+      display: flex; flex-direction: column;
+    }
+    .status {
+      height: 32px; flex: none;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 4px 26px 0 28px;
+      font-size: 13px; font-weight: 600;
+    }
+    .status .right { display: flex; gap: 6px; align-items: center; font-size: 12px; }
+    .camera {
+      position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+      width: 12px; height: 12px; border-radius: 50%;
+      background: #05060a; box-shadow: 0 0 0 2px #1b1d28;
+    }
+    .urlbar {
+      height: 50px; flex: none;
+      display: flex; align-items: center; gap: 8px; padding: 0 12px;
+    }
+    .pill {
+      flex: 1; height: 38px; border-radius: 19px; padding: 0 14px;
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(127, 127, 150, 0.16);
+      font-size: 14px;
+    }
+    .dots { font-size: 20px; width: 28px; text-align: center; }
+    iframe { flex: 1; width: 384px; border: 0; background: transparent; }
+    .nav { height: 24px; flex: none; display: grid; place-items: center; }
+    .nav i { display: block; width: 110px; height: 4px; border-radius: 2px; background: currentColor; opacity: 0.55; }
+  </style>
+</head>
+<body>
+  <div class="scaler" id="scaler">
+    <div class="phone">
+      <div class="btn power"></div>
+      <div class="btn vol"></div>
+      <div class="screen" id="screen">
+        <div class="camera"></div>
+        <div class="status">
+          <span id="clock">9:41</span>
+          <span class="right">
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="4.3" y="5.5" width="3" height="6.5" rx="1"/><rect x="8.6" y="3" width="3" height="9" rx="1"/><rect x="13" y="0" width="3" height="12" rx="1"/></svg>
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1 4.2a10 10 0 0 1 14 0"/><path d="M3.6 7a6.4 6.4 0 0 1 8.8 0"/><circle cx="8" cy="10" r="1" fill="currentColor" stroke="none"/></svg>
+            <span>87%</span>
+            <svg width="22" height="12" viewBox="0 0 22 12" fill="none"><rect x="0.5" y="0.5" width="19" height="11" rx="3" stroke="currentColor" opacity="0.7"/><rect x="2" y="2" width="14" height="8" rx="2" fill="currentColor"/><rect x="20.5" y="4" width="1.5" height="4" rx="0.7" fill="currentColor" opacity="0.7"/></svg>
+          </span>
+        </div>
+        <div class="urlbar">
+          <div class="pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" opacity="0.7"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm-3 8V6a3 3 0 0 1 6 0v3z"/></svg>
+            <span>todo-tracker</span>
+          </div>
+          <div class="dots">⋮</div>
+        </div>
+        <iframe id="app" title="To-Do Tracker"></iframe>
+        <div class="nav"><i></i></div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">Mockup of a Galaxy S25 FE (about 6.7″, 19.5:9). The app inside is live: tap, add and edit. Demo data is kept separate from your real list.</div>
+
+  <script>
+    // Demo data in separate storage ("demo:" prefix), never your real list
+    function iso(n) {
+      var d = new Date(); d.setDate(d.getDate() + n);
+      return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+    }
+    function item(id, text, priority, days, who, cat, notes, repeat, done) {
+      return { id: id, item: text, priority: priority, deadline: days === null ? "" : iso(days),
+               requestedBy: who, category: cat, notes: notes || "", repeat: repeat || "", done: !!done, nextId: "" };
+    }
+    try {
+      localStorage.setItem("demo:items", JSON.stringify([
+        item("d1", "Send Q3 report to finance", "High", -2, "Sam", "Work", "Include the revenue breakdown"),
+        item("d2", "Pay electricity bill", "Medium", 0, "Alex", "Home", "", "monthly"),
+        item("d3", "Call the plumber", "Low", 1, "Alex", "Home"),
+        item("d4", "Prepare team lunch order", "Medium", 4, "Priya", "Work"),
+        item("d5", "Book dentist appointment", "High", null, "Me", ""),
+        item("d6", "Renew car insurance", "High", -5, "Sam", "Home", "", "", true)
+      ]));
+    } catch (e) {}
+
+    var frame = document.getElementById("app");
+    var screen = document.getElementById("screen");
+    frame.src = "index.html#demo";
+
+    // Make the status bar and browser bar match the app's current light/dark theme
+    function syncChrome() {
+      try {
+        var doc = frame.contentDocument.documentElement;
+        var dark = doc.dataset.theme === "dark";
+        screen.style.setProperty("--chrome", dark ? "#0f1117" : "#f4f5fb");
+        screen.style.setProperty("--chrome-text", dark ? "#e8eaf2" : "#1f2430");
+      } catch (e) {}
+    }
+    frame.addEventListener("load", function () {
+      syncChrome();
+      try {
+        // phones don't show desktop-style scrollbars
+        var st = frame.contentDocument.createElement("style");
+        st.textContent = "html{scrollbar-width:none}html::-webkit-scrollbar{display:none}";
+        frame.contentDocument.head.appendChild(st);
+      } catch (e) {}
+      try {
+        new MutationObserver(syncChrome).observe(frame.contentDocument.documentElement, { attributes: true });
+      } catch (e) {}
+    });
+
+    function tick() {
+      var d = new Date();
+      document.getElementById("clock").textContent = d.getHours() + ":" + String(d.getMinutes()).padStart(2, "0");
+    }
+    tick(); setInterval(tick, 30000);
+
+    // Shrink the phone to fit the window height
+    function fit() {
+      var s = Math.min(1, (innerHeight - 64) / 852, (innerWidth - 20) / 404);
+      document.getElementById("scaler").style.transform = "scale(" + s + ")";
+    }
+    fit(); addEventListener("resize", fit);
+  </script>
+</body>
+</html>
