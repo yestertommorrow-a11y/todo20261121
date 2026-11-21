@@ -8,6 +8,11 @@ Entry format: date, what changed, which files, and anything worth knowing (limit
 
 ## 2026-11-21
 
+### Heading color: green to pink
+- The heading is now pink (`--heading`: `#d6336c` in light mode, a lighter `#f472b6` in dark mode).
+- Files: `todo-app/index.html`.
+- Pushed to GitHub, so the live site shows the pink heading once Pages rebuilds (usually within a minute or two).
+
 ### Heading color: red to green
 - The heading is now green (`--heading`: `#2e7d32` in light mode, a lighter `#4cc26a` in dark mode). The CSS variable was renamed from `--brick` to `--heading`.
 - Files: `todo-app/index.html`.
